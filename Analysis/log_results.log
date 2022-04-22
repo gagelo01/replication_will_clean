@@ -1,0 +1,1325 @@
+TwoSampleMR version 0.5.6 
+[>] New: Option to use non-European LD reference panels for clumping etc
+[>] Some studies temporarily quarantined to verify effect allele
+[>] See news(package='TwoSampleMR') and https://gwas.mrcieu.ac.uk for further details
+
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.6     ✔ dplyr   1.0.7
+✔ tidyr   1.1.4     ✔ stringr 1.4.0
+✔ readr   2.1.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+
+Attaching package: ‘data.table’
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+The following object is masked from ‘package:purrr’:
+
+    transpose
+
+
+Attaching package: ‘MendelianRandomization’
+
+The following objects are masked from ‘package:TwoSampleMR’:
+
+    mr_ivw, mr_median
+
+Harmonising BMI_UKB (BMI_UKB) and BMI_UKB (BMI_UKB)
+Harmonising BMI_UKB (BMI_UKB) and GIANT_2015_BMI (GIANT_2015_BMI)
+Harmonising BMI_UKB (BMI_UKB) and GIANT_2015_WC (GIANT_2015_WC)
+Harmonising BMI_UKB (BMI_UKB) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+Removing the following SNPs for incompatible alleles:
+rs9674487
+Harmonising BMI_UKB (BMI_UKB) and NAFLD (NAFLD)
+Removing the following SNPs for incompatible alleles:
+rs9674487
+Harmonising BMI_UKB (BMI_UKB) and Nikpay_CAD (Nikpay_CAD)
+Harmonising BMI_UKB (BMI_UKB) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+Removing the following SNPs for incompatible alleles:
+rs9674487
+Harmonising BMI_UKB (BMI_UKB) and WC_UKB (WC_UKB)
+Harmonising BMI_UKB (BMI_UKB) and van_der_Harst_CAD (van_der_Harst_CAD)
+Harmonising GIANT_2015_BMI (GIANT_2015_BMI) and BMI_UKB (BMI_UKB)
+Harmonising GIANT_2015_BMI (GIANT_2015_BMI) and GIANT_2015_BMI (GIANT_2015_BMI)
+Harmonising GIANT_2015_BMI (GIANT_2015_BMI) and GIANT_2015_WC (GIANT_2015_WC)
+Harmonising GIANT_2015_BMI (GIANT_2015_BMI) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+Harmonising GIANT_2015_BMI (GIANT_2015_BMI) and NAFLD (NAFLD)
+Harmonising GIANT_2015_BMI (GIANT_2015_BMI) and Nikpay_CAD (Nikpay_CAD)
+Harmonising GIANT_2015_BMI (GIANT_2015_BMI) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+Harmonising GIANT_2015_BMI (GIANT_2015_BMI) and WC_UKB (WC_UKB)
+Harmonising GIANT_2015_BMI (GIANT_2015_BMI) and van_der_Harst_CAD (van_der_Harst_CAD)
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and BMI_UKB (BMI_UKB)
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and GIANT_2015_BMI (GIANT_2015_BMI)
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and GIANT_2015_WC (GIANT_2015_WC)
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and NAFLD (NAFLD)
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and Nikpay_CAD (Nikpay_CAD)
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and WC_UKB (WC_UKB)
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and van_der_Harst_CAD (van_der_Harst_CAD)
+Harmonising Mahajan_Type2diabetes (Mahajan_Type2diabetes) and BMI_UKB (BMI_UKB)
+Harmonising Mahajan_Type2diabetes (Mahajan_Type2diabetes) and GIANT_2015_BMI (GIANT_2015_BMI)
+Harmonising Mahajan_Type2diabetes (Mahajan_Type2diabetes) and GIANT_2015_WC (GIANT_2015_WC)
+Harmonising Mahajan_Type2diabetes (Mahajan_Type2diabetes) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+Harmonising Mahajan_Type2diabetes (Mahajan_Type2diabetes) and NAFLD (NAFLD)
+Harmonising Mahajan_Type2diabetes (Mahajan_Type2diabetes) and Nikpay_CAD (Nikpay_CAD)
+Harmonising Mahajan_Type2diabetes (Mahajan_Type2diabetes) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+Harmonising Mahajan_Type2diabetes (Mahajan_Type2diabetes) and WC_UKB (WC_UKB)
+Harmonising Mahajan_Type2diabetes (Mahajan_Type2diabetes) and van_der_Harst_CAD (van_der_Harst_CAD)
+Harmonising NAFLD (NAFLD) and BMI_UKB (BMI_UKB)
+Harmonising NAFLD (NAFLD) and GIANT_2015_BMI (GIANT_2015_BMI)
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Harmonising NAFLD (NAFLD) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+Harmonising NAFLD (NAFLD) and NAFLD (NAFLD)
+Harmonising NAFLD (NAFLD) and Nikpay_CAD (Nikpay_CAD)
+Harmonising NAFLD (NAFLD) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Harmonising NAFLD (NAFLD) and van_der_Harst_CAD (van_der_Harst_CAD)
+Harmonising Nikpay_CAD (Nikpay_CAD) and BMI_UKB (BMI_UKB)
+Harmonising Nikpay_CAD (Nikpay_CAD) and GIANT_2015_BMI (GIANT_2015_BMI)
+Harmonising Nikpay_CAD (Nikpay_CAD) and GIANT_2015_WC (GIANT_2015_WC)
+Harmonising Nikpay_CAD (Nikpay_CAD) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+Harmonising Nikpay_CAD (Nikpay_CAD) and NAFLD (NAFLD)
+Harmonising Nikpay_CAD (Nikpay_CAD) and Nikpay_CAD (Nikpay_CAD)
+Harmonising Nikpay_CAD (Nikpay_CAD) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+Harmonising Nikpay_CAD (Nikpay_CAD) and WC_UKB (WC_UKB)
+Harmonising Nikpay_CAD (Nikpay_CAD) and van_der_Harst_CAD (van_der_Harst_CAD)
+Harmonising Scott_Type2Diabetes (Scott_Type2Diabetes) and BMI_UKB (BMI_UKB)
+Harmonising Scott_Type2Diabetes (Scott_Type2Diabetes) and GIANT_2015_BMI (GIANT_2015_BMI)
+Harmonising Scott_Type2Diabetes (Scott_Type2Diabetes) and GIANT_2015_WC (GIANT_2015_WC)
+Harmonising Scott_Type2Diabetes (Scott_Type2Diabetes) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+Harmonising Scott_Type2Diabetes (Scott_Type2Diabetes) and NAFLD (NAFLD)
+Harmonising Scott_Type2Diabetes (Scott_Type2Diabetes) and Nikpay_CAD (Nikpay_CAD)
+Harmonising Scott_Type2Diabetes (Scott_Type2Diabetes) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+Harmonising Scott_Type2Diabetes (Scott_Type2Diabetes) and WC_UKB (WC_UKB)
+Harmonising Scott_Type2Diabetes (Scott_Type2Diabetes) and van_der_Harst_CAD (van_der_Harst_CAD)
+Harmonising van_der_Harst_CAD (van_der_Harst_CAD) and BMI_UKB (BMI_UKB)
+Harmonising van_der_Harst_CAD (van_der_Harst_CAD) and GIANT_2015_BMI (GIANT_2015_BMI)
+Harmonising van_der_Harst_CAD (van_der_Harst_CAD) and GIANT_2015_WC (GIANT_2015_WC)
+Harmonising van_der_Harst_CAD (van_der_Harst_CAD) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+Harmonising van_der_Harst_CAD (van_der_Harst_CAD) and NAFLD (NAFLD)
+Harmonising van_der_Harst_CAD (van_der_Harst_CAD) and Nikpay_CAD (Nikpay_CAD)
+Harmonising van_der_Harst_CAD (van_der_Harst_CAD) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+Harmonising van_der_Harst_CAD (van_der_Harst_CAD) and WC_UKB (WC_UKB)
+Harmonising van_der_Harst_CAD (van_der_Harst_CAD) and van_der_Harst_CAD (van_der_Harst_CAD)
+Harmonising WC_UKB (WC_UKB) and BMI_UKB (BMI_UKB)
+Removing the following SNPs for incompatible alleles:
+rs156902
+Harmonising WC_UKB (WC_UKB) and GIANT_2015_BMI (GIANT_2015_BMI)
+Removing the following SNPs for incompatible alleles:
+rs156902
+Harmonising WC_UKB (WC_UKB) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for incompatible alleles:
+rs156902
+Harmonising WC_UKB (WC_UKB) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+Removing the following SNPs for incompatible alleles:
+rs156902
+Harmonising WC_UKB (WC_UKB) and NAFLD (NAFLD)
+Removing the following SNPs for incompatible alleles:
+rs156902
+Harmonising WC_UKB (WC_UKB) and Nikpay_CAD (Nikpay_CAD)
+Removing the following SNPs for incompatible alleles:
+rs156902
+Harmonising WC_UKB (WC_UKB) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+Removing the following SNPs for incompatible alleles:
+rs156902
+Harmonising WC_UKB (WC_UKB) and WC_UKB (WC_UKB)
+Removing the following SNPs for incompatible alleles:
+rs156902
+Harmonising WC_UKB (WC_UKB) and van_der_Harst_CAD (van_der_Harst_CAD)
+Removing the following SNPs for incompatible alleles:
+rs156902
+Analysing 'BMI_UKB' on 'Mahajan_Type2diabetes'
+BMI_UKB - Mahajan_Type2diabetes
+Analysing 'BMI_UKB' on 'NAFLD'
+BMI_UKB - NAFLD
+Analysing 'BMI_UKB' on 'Nikpay_CAD'
+BMI_UKB - Nikpay_CAD
+Analysing 'BMI_UKB' on 'Scott_Type2Diabetes'
+BMI_UKB - Scott_Type2Diabetes
+Analysing 'BMI_UKB' on 'van_der_Harst_CAD'
+BMI_UKB - van_der_Harst_CAD
+Analysing 'GIANT_2015_BMI' on 'Mahajan_Type2diabetes'
+GIANT_2015_BMI - Mahajan_Type2diabetes
+Analysing 'GIANT_2015_BMI' on 'NAFLD'
+GIANT_2015_BMI - NAFLD
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'GIANT_2015_BMI' on 'Nikpay_CAD'
+GIANT_2015_BMI - Nikpay_CAD
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'GIANT_2015_BMI' on 'Scott_Type2Diabetes'
+GIANT_2015_BMI - Scott_Type2Diabetes
+Analysing 'GIANT_2015_BMI' on 'van_der_Harst_CAD'
+GIANT_2015_BMI - van_der_Harst_CAD
+Analysing 'GIANT_2015_WC' on 'Mahajan_Type2diabetes'
+GIANT_2015_WC - Mahajan_Type2diabetes
+Analysing 'GIANT_2015_WC' on 'NAFLD'
+GIANT_2015_WC - NAFLD
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'GIANT_2015_WC' on 'Nikpay_CAD'
+GIANT_2015_WC - Nikpay_CAD
+Analysing 'GIANT_2015_WC' on 'Scott_Type2Diabetes'
+GIANT_2015_WC - Scott_Type2Diabetes
+Analysing 'GIANT_2015_WC' on 'van_der_Harst_CAD'
+GIANT_2015_WC - van_der_Harst_CAD
+Analysing 'Mahajan_Type2diabetes' on 'BMI_UKB'
+Mahajan_Type2diabetes - BMI_UKB
+Analysing 'Mahajan_Type2diabetes' on 'GIANT_2015_BMI'
+Mahajan_Type2diabetes - GIANT_2015_BMI
+Analysing 'Mahajan_Type2diabetes' on 'GIANT_2015_WC'
+Mahajan_Type2diabetes - GIANT_2015_WC
+Analysing 'Mahajan_Type2diabetes' on 'NAFLD'
+Mahajan_Type2diabetes - NAFLD
+Analysing 'Mahajan_Type2diabetes' on 'Nikpay_CAD'
+Mahajan_Type2diabetes - Nikpay_CAD
+Analysing 'Mahajan_Type2diabetes' on 'Scott_Type2Diabetes'
+Mahajan_Type2diabetes - Scott_Type2Diabetes
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'Mahajan_Type2diabetes' on 'van_der_Harst_CAD'
+Mahajan_Type2diabetes - van_der_Harst_CAD
+Analysing 'Mahajan_Type2diabetes' on 'WC_UKB'
+Mahajan_Type2diabetes - WC_UKB
+Analysing 'NAFLD' on 'BMI_UKB'
+NAFLD - BMI_UKB
+Analysing 'NAFLD' on 'GIANT_2015_BMI'
+NAFLD - GIANT_2015_BMI
+Not enough intrumental variablesAnalysing 'NAFLD' on 'GIANT_2015_WC'
+NAFLD - GIANT_2015_WC
+Not enough intrumental variablesAnalysing 'NAFLD' on 'Mahajan_Type2diabetes'
+NAFLD - Mahajan_Type2diabetes
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'NAFLD' on 'Nikpay_CAD'
+NAFLD - Nikpay_CAD
+Analysing 'NAFLD' on 'Scott_Type2Diabetes'
+NAFLD - Scott_Type2Diabetes
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'NAFLD' on 'van_der_Harst_CAD'
+NAFLD - van_der_Harst_CAD
+Analysing 'NAFLD' on 'WC_UKB'
+NAFLD - WC_UKB
+Analysing 'Nikpay_CAD' on 'BMI_UKB'
+Nikpay_CAD - BMI_UKB
+Analysing 'Nikpay_CAD' on 'GIANT_2015_BMI'
+Nikpay_CAD - GIANT_2015_BMI
+Analysing 'Nikpay_CAD' on 'GIANT_2015_WC'
+Nikpay_CAD - GIANT_2015_WC
+Analysing 'Nikpay_CAD' on 'Mahajan_Type2diabetes'
+Nikpay_CAD - Mahajan_Type2diabetes
+Analysing 'Nikpay_CAD' on 'NAFLD'
+Nikpay_CAD - NAFLD
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'Nikpay_CAD' on 'Scott_Type2Diabetes'
+Nikpay_CAD - Scott_Type2Diabetes
+Analysing 'Nikpay_CAD' on 'van_der_Harst_CAD'
+Nikpay_CAD - van_der_Harst_CAD
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'Nikpay_CAD' on 'WC_UKB'
+Nikpay_CAD - WC_UKB
+Analysing 'Scott_Type2Diabetes' on 'BMI_UKB'
+Scott_Type2Diabetes - BMI_UKB
+Analysing 'Scott_Type2Diabetes' on 'GIANT_2015_BMI'
+Scott_Type2Diabetes - GIANT_2015_BMI
+Analysing 'Scott_Type2Diabetes' on 'GIANT_2015_WC'
+Scott_Type2Diabetes - GIANT_2015_WC
+Analysing 'Scott_Type2Diabetes' on 'Mahajan_Type2diabetes'
+Scott_Type2Diabetes - Mahajan_Type2diabetes
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'Scott_Type2Diabetes' on 'NAFLD'
+Scott_Type2Diabetes - NAFLD
+Analysing 'Scott_Type2Diabetes' on 'Nikpay_CAD'
+Scott_Type2Diabetes - Nikpay_CAD
+Analysing 'Scott_Type2Diabetes' on 'van_der_Harst_CAD'
+Scott_Type2Diabetes - van_der_Harst_CAD
+Analysing 'Scott_Type2Diabetes' on 'WC_UKB'
+Scott_Type2Diabetes - WC_UKB
+Analysing 'van_der_Harst_CAD' on 'BMI_UKB'
+van_der_Harst_CAD - BMI_UKB
+Analysing 'van_der_Harst_CAD' on 'GIANT_2015_BMI'
+van_der_Harst_CAD - GIANT_2015_BMI
+Analysing 'van_der_Harst_CAD' on 'GIANT_2015_WC'
+van_der_Harst_CAD - GIANT_2015_WC
+Analysing 'van_der_Harst_CAD' on 'Mahajan_Type2diabetes'
+van_der_Harst_CAD - Mahajan_Type2diabetes
+Analysing 'van_der_Harst_CAD' on 'NAFLD'
+van_der_Harst_CAD - NAFLD
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'van_der_Harst_CAD' on 'Nikpay_CAD'
+van_der_Harst_CAD - Nikpay_CAD
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'van_der_Harst_CAD' on 'Scott_Type2Diabetes'
+van_der_Harst_CAD - Scott_Type2Diabetes
+Analysing 'van_der_Harst_CAD' on 'WC_UKB'
+van_der_Harst_CAD - WC_UKB
+Analysing 'WC_UKB' on 'Mahajan_Type2diabetes'
+WC_UKB - Mahajan_Type2diabetes
+Analysing 'WC_UKB' on 'NAFLD'
+WC_UKB - NAFLD
+[1] "MR-PRESSO global test indicates no significant pleiotropy"
+Analysing 'WC_UKB' on 'Nikpay_CAD'
+WC_UKB - Nikpay_CAD
+Analysing 'WC_UKB' on 'Scott_Type2Diabetes'
+WC_UKB - Scott_Type2Diabetes
+Analysing 'WC_UKB' on 'van_der_Harst_CAD'
+WC_UKB - van_der_Harst_CAD
+There were 50 or more warnings (use warnings() to see the first 50)
+API: public: http://gwas-api.mrcieu.ac.uk/
+Clumping 1, 717 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64b9ef445.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64b9ef445
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64b9ef445
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64b9ef445.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 462 clumps formed from 717 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64b9ef445.clumped
+.
+Removing 255 of 717 variants due to LD with other variants or absence from LD reference panel
+Harmonising BMI_UKB (BMI_UKB) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10887578, rs11250094, rs11634851, rs12507026, rs13264909, rs1454687, rs1860750, rs2396625, rs347551, rs396755, rs59086897, rs6597975, rs7568228, rs765874, rs7704382, rs961498
+Harmonising BMI_UKB (BMI_UKB) and NAFLD (NAFLD)
+Removing the following SNPs for incompatible alleles:
+rs9674487
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic 0.7760951 0.7729647
+Clumping WC_UKB, 717 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6756dec7e.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6756dec7e
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6756dec7e
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6756dec7e.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 441 clumps formed from 717 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6756dec7e.clumped
+.
+Removing 276 of 717 variants due to LD with other variants or absence from LD reference panel
+Harmonising BMI_UKB (BMI_UKB) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11250094, rs11666480, rs11778934, rs13264909, rs1405261, rs1441098, rs1454687, rs165656, rs2373980, rs347551, rs3949781, rs4856717, rs654060, rs6597975
+Harmonising BMI_UKB (BMI_UKB) and NAFLD (NAFLD)
+Removing the following SNPs for incompatible alleles:
+rs9674487
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic 0.8809114 0.8749575
+Clumping BMI_UKB, 717 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66c501e12.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66c501e12
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66c501e12
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66c501e12.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 474 clumps formed from 717 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66c501e12.clumped
+.
+Removing 243 of 717 variants due to LD with other variants or absence from LD reference panel
+Harmonising BMI_UKB (BMI_UKB) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10887578, rs11250094, rs11634851, rs12507026, rs1454687, rs1860750, rs2396625, rs347551, rs396755, rs4737188, rs59086897, rs6597975, rs7568228, rs765874, rs7704382, rs9388446, rs961498
+Harmonising BMI_UKB (BMI_UKB) and NAFLD (NAFLD)
+Removing the following SNPs for incompatible alleles:
+rs9674487
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic 0.4646221 0.4706913
+Clumping 1, 378 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc65393b519.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc65393b519
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc65393b519
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc65393b519.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 376 clumps formed from 378 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc65393b519.clumped
+.
+Removing 2 of 378 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs13264909, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2253310, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  1.079928  10.40746
+Clumping WC_UKB, 378 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc648aaf362.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc648aaf362
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc648aaf362
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc648aaf362.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 376 clumps formed from 378 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc648aaf362.clumped
+.
+Removing 2 of 378 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs13264909, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2253310, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic 0.7406952  7.305805
+Clumping NAFLD, 375 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6122eee43.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6122eee43
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6122eee43
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6122eee43.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 371 clumps formed from 373 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6122eee43.clumped
+.
+Removing 4 of 375 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic   1.08488   10.3839
+Clumping 1, 378 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67b22be9a.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67b22be9a
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67b22be9a
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67b22be9a.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 376 clumps formed from 378 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67b22be9a.clumped
+.
+Removing 2 of 378 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs13264909, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2253310, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and van_der_Harst_CAD (van_der_Harst_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  1.079928  10.40746
+Clumping WC_UKB, 378 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc631f72a3d.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc631f72a3d
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc631f72a3d
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc631f72a3d.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 376 clumps formed from 378 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc631f72a3d.clumped
+.
+Removing 2 of 378 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs13264909, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2253310, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and van_der_Harst_CAD (van_der_Harst_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic 0.7406952  7.305805
+Clumping NAFLD, 375 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6c77bf68.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6c77bf68
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6c77bf68
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6c77bf68.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 371 clumps formed from 373 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6c77bf68.clumped
+.
+Removing 4 of 375 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and van_der_Harst_CAD (van_der_Harst_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic   1.08488   10.3839
+Clumping 1, 378 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64020ea0f.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64020ea0f
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64020ea0f
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64020ea0f.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 376 clumps formed from 378 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64020ea0f.clumped
+.
+Removing 2 of 378 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs13264909, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2253310, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  1.079928  10.40746
+Clumping WC_UKB, 378 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc617046445.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc617046445
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc617046445
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc617046445.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 376 clumps formed from 378 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc617046445.clumped
+.
+Removing 2 of 378 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs13264909, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2253310, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic 0.7406952  7.305805
+Clumping NAFLD, 375 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6a2a981e.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6a2a981e
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6a2a981e
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6a2a981e.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 371 clumps formed from 373 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6a2a981e.clumped
+.
+Removing 4 of 375 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic   1.08488   10.3839
+Clumping 1, 378 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64f63f1c9.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64f63f1c9
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64f63f1c9
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64f63f1c9.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 376 clumps formed from 378 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64f63f1c9.clumped
+.
+Removing 2 of 378 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs13264909, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2253310, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and Nikpay_CAD (Nikpay_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic   1.08277  10.44225
+Clumping WC_UKB, 378 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e41470c.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e41470c
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e41470c
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e41470c.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 376 clumps formed from 378 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e41470c.clumped
+.
+Removing 2 of 378 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs13264909, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2253310, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and Nikpay_CAD (Nikpay_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic   0.74263  7.334272
+Clumping NAFLD, 375 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66b63da33.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66b63da33
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66b63da33
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66b63da33.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 371 clumps formed from 373 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66b63da33.clumped
+.
+Removing 4 of 375 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and WC_UKB (WC_UKB)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs10406327, rs10887578, rs11666480, rs11778934, rs1405261, rs1441098, rs1454687, rs165656, rs2133561, rs2373980, rs347551, rs3949781, rs4856717, rs654060
+Harmonising NAFLD (NAFLD) and Nikpay_CAD (Nikpay_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  1.087748  10.41861
+Clumping 1, 94 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc652786d00.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc652786d00
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc652786d00
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc652786d00.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 72 clumps formed from 94 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc652786d00.clumped
+.
+Removing 22 of 94 variants due to LD with other variants or absence from LD reference panel
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and GIANT_2015_BMI (GIANT_2015_BMI)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and NAFLD (NAFLD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic   0.54252 0.5721229
+Clumping GIANT_2015_WC, 94 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc667582788.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc667582788
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc667582788
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc667582788.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 72 clumps formed from 94 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc667582788.clumped
+.
+Removing 22 of 94 variants due to LD with other variants or absence from LD reference panel
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and GIANT_2015_BMI (GIANT_2015_BMI)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and NAFLD (NAFLD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic 0.5559148 0.5927431
+Clumping GIANT_2015_BMI, 94 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6d11190.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6d11190
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6d11190
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6d11190.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 72 clumps formed from 94 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6d11190.clumped .
+Removing 22 of 94 variants due to LD with other variants or absence from LD reference panel
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and GIANT_2015_BMI (GIANT_2015_BMI)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising GIANT_2015_WC (GIANT_2015_WC) and NAFLD (NAFLD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  0.454159 0.4779659
+Clumping 1, 45 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6742d5087.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6742d5087
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6742d5087
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6742d5087.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 44 clumps formed from 45 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6742d5087.clumped
+.
+Removing 1 of 45 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  18.51592  3.703473
+Clumping GIANT_2015_WC, 44 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e0c6f01.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e0c6f01
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e0c6f01
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e0c6f01.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 43 clumps formed from 44 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc64e0c6f01.clumped
+.
+Removing 1 of 44 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  18.51592  3.703473
+Clumping NAFLD, 45 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc675351e62.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc675351e62
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc675351e62
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc675351e62.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 44 clumps formed from 45 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc675351e62.clumped
+.
+Removing 1 of 45 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and Mahajan_Type2diabetes (Mahajan_Type2diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  17.05304  3.922339
+Clumping 1, 45 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6194b30a9.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6194b30a9
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6194b30a9
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6194b30a9.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 44 clumps formed from 45 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6194b30a9.clumped
+.
+Removing 1 of 45 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and van_der_Harst_CAD (van_der_Harst_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  18.51592  3.703473
+Clumping GIANT_2015_WC, 44 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc612fadd1d.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc612fadd1d
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc612fadd1d
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc612fadd1d.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 43 clumps formed from 44 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc612fadd1d.clumped
+.
+Removing 1 of 44 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and van_der_Harst_CAD (van_der_Harst_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  18.51592  3.703473
+Clumping NAFLD, 45 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc639e9d549.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc639e9d549
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc639e9d549
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc639e9d549.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 44 clumps formed from 45 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc639e9d549.clumped
+.
+Removing 1 of 45 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and van_der_Harst_CAD (van_der_Harst_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  17.05304  3.922339
+Clumping 1, 45 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc672e1c612.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc672e1c612
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc672e1c612
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc672e1c612.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 44 clumps formed from 45 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc672e1c612.clumped
+.
+Removing 1 of 45 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  18.51592  3.703473
+Clumping GIANT_2015_WC, 44 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc627c9c9ab.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc627c9c9ab
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc627c9c9ab
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc627c9c9ab.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 43 clumps formed from 44 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc627c9c9ab.clumped
+.
+Removing 1 of 44 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  18.51592  3.703473
+Clumping NAFLD, 45 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6246fdbbb.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6246fdbbb
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6246fdbbb
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6246fdbbb.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 44 clumps formed from 45 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc6246fdbbb.clumped
+.
+Removing 1 of 45 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and Scott_Type2Diabetes (Scott_Type2Diabetes)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  17.05304  3.922339
+Clumping 1, 45 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc624636554.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc624636554
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc624636554
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc624636554.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 44 clumps formed from 45 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc624636554.clumped
+.
+Removing 1 of 45 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and Nikpay_CAD (Nikpay_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  18.51592  3.703473
+Clumping GIANT_2015_WC, 44 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67022decf.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67022decf
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67022decf
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67022decf.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 43 clumps formed from 44 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc67022decf.clumped
+.
+Removing 1 of 44 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and Nikpay_CAD (Nikpay_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  18.51592  3.703473
+Clumping NAFLD, 45 variants, using EUR population reference
+PLINK v1.90b6.21 64-bit (19 Oct 2020)          www.cog-genomics.org/plink/1.9/
+(C) 2005-2020 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66fe8cd49.log.
+Options in effect:
+  --bfile /home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs
+  --clump /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66fe8cd49
+  --clump-kb 10000
+  --clump-p1 0.99
+  --clump-r2 0.001
+  --out /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66fe8cd49
+
+160294 MB RAM detected; reserving 80147 MB for main workspace.
+8550156 variants loaded from .bim file.
+503 people (0 males, 0 females, 503 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66fe8cd49.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 503 founders and 0 nonfounders present.
+Calculating allele frequencies... 0%1%2%3%4%5%6%7%8%9%10%11%12%13%14%15%16%17%18%19%20%21%22%23%24%25%26%27%28%29%30%31%32%33%34%35%36%37%38%39%40%41%42%43%44%45%46%47%48%49%50%51%52%53%54%55%56%57%58%59%60%61%62%63%64%65%66%67%68%69%70%71%72%73%74%75%76%77%78%79%80%81%82%83%84%85%86%87%88%89%90%91%92%93%94%95%96%97%98%99% done.
+8550156 variants and 503 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 44 clumps formed from 45 top variants.
+Results written to /mnt/sde/gagelo01/temp/RtmpQHgDw7/file26ebc66fe8cd49.clumped
+.
+Removing 1 of 45 variants due to LD with other variants or absence from LD reference panel
+Harmonising NAFLD (NAFLD) and GIANT_2015_WC (GIANT_2015_WC)
+Removing the following SNPs for being palindromic with intermediate allele frequencies:
+rs1558902
+Harmonising NAFLD (NAFLD) and Nikpay_CAD (Nikpay_CAD)
+
+Conditional F-statistics for instrument strength
+
+            exposure1 exposure2
+F-statistic  17.05304  3.922339
