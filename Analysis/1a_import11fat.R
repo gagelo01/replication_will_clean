@@ -1,4 +1,5 @@
 #!/usr/bin/env Rscript
+#This file import all GWAS summary statistics on MRI derived phenotype from pmid:34128465
 library(data.table)
 library(GagnonMR)
 library(tidyverse)
