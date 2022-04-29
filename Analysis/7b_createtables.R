@@ -18,7 +18,8 @@ egger_intercept <- egger_intercept[!(exposure %in% c("Volume_VAT", "Volume_ASAT"
 harm_univariate <- fread( "Data/Modified/harm_univariate.txt")
 harm_univariate <- harm_univariate[!(exposure %in% c("Volume_VAT", "Volume_ASAT") |outcome %in% c("Volume_VAT", "Volume_ASAT")), ]
 res_class <- fread("Data/Modified/res_class.txt")
-
+NAFLDsensi <-fread("Data/Modified/NAFLD_exposure_p5e-6.txt")
+NAFLDsensi[,c("id.exposure", "id.outcome") := NULL]
 #supptable 1 description of cohorts
 ao <- fread("/mnt/sdf/gagelo01/Vcffile/available_outcomes_2021-10-13.txt")
 ID_mrbase_exp <- c("ieu-a-61", "ieu-a-835", "ukb-b-19953", "ukb-b-9405","ieu-a-7","ieu-a-79" ) 
@@ -42,7 +43,8 @@ url = c("https://gwas.mrcieu.ac.uk/files/ukb-b-19953/ukb-b-19953.vcf.gz",
   "http://diagram-consortium.org/downloads.html",
   "https://data.mendeley.com/datasets/gbbsrpx6bs/1",
   "http://diagram-consortium.org/downloads.html",
-  "http://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90016001-GCST90017000/GCST90016676/"))
+  "http://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90016001-GCST90017000/GCST90016676/"),
+download_date = c(rep("2021-16-06", 6), "2021-11-03", rep("2021-16-06", 3), "2022-04-15"))
   
 dataset <- merge(dataset, dattrait, "trait")  
 #supp table 
@@ -56,13 +58,14 @@ inst_all_sign_clump <- inst_all_sign_clump[,.(exposure, SNP, chr.exposure, pos.e
                        effect_allele.exposure, beta.exposure, se.exposure, pval.exposure, eaf.exposure)]
 
 ########Supplementary table titles and description
-dt_title <- data.table(title = paste0("Supplementary Table ", 1:7),
+dt_title <- data.table(title = paste0("Supplementary Table ", 1:8),
                        caption = c("Description of the datasets used.",
                                    "Harmonised data sets.",
                                    "Univariable Mendelian Randomization results",
                                    "Univariable Mendelian Randomization Egger's intercept",
                                    "Multivariable Mendelian randomization results.",
-                                   "Class specific Mendelian randomization results",
+                                   "Group specific Mendelian randomization results",
+                                   "NAFLD effect on T2D and CAD using pvalue threshold of 5e-6 and LD clump of R2<0.001",
                                    "Instrument strength for univariable MR"))
 
 
@@ -73,7 +76,8 @@ writexl::write_xlsx(x = list("Tables captions and titles" = dt_title,
                             "Supplementary Table 4" = egger_intercept, 
                             "Supplementary Table 5" = dt_resmvmr, 
                             "Supplementary Table 6" = res_class,
-                            "Supplementary Table 7" = FandQ),
+                            "Supplementary Table 7" = NAFLDsensi,
+                            "Supplementary Table 8" = FandQ),
                     path = "Results/supplementary_tables_clean.xlsx")
 
 
