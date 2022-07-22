@@ -1,10 +1,11 @@
+#!/usr/bin/env Rscript
 library(TwoSampleMR)
 library(tidyverse)
 library(data.table)
 library(GagnonMR)
 library(ckbplotr)
 
-setwd("/mnt/sde/gagelo01/Projects/small_MR_exploration/replication_will_clean")
+setwd("/mnt/sda/gagelo01/Projects/small_MR_exploration/replication_will_clean")
 resmvmr <- readRDS( "Data/Modified/res_mvmr.rds")
 res_univariate <- fread("Data/Modified/res_univariate.txt")
 res_class <- fread( "Data/Modified/res_class.txt")
@@ -12,7 +13,7 @@ harm_class <- fread("Data/Modified/harm_class.txt")
 ###plotting Figure 1 and supplementary figure 1
 
 ###plotting Figure 1 and supplementary figure 1
-exp_name = list(c("BMI_UKB", "WC_UKB", "WHRadjBMI"), c("GIANT_2015_BMI", "GIANT_2015_WC" ))
+exp_name = list(c("BMI_UKB", "WC_UKB", "whradjbmi_ukbonly"), c("GIANT_2015_BMI", "GIANT_2015_WC","WHRadjBMI"))
 out_name = list(c("NAFLD","Fat_Liver"), c("NAFLD", "Fat_Liver"))
 file_name <- c("Figure1", "Supplementary_figure1")
 
@@ -23,6 +24,7 @@ for(i in 1:length(exp_name)) {
   doA[,exposure := gsub("WC_UKB", "Waist circumference", exposure)]
   doA[,exposure := gsub("GIANT_2015_BMI", "Body mass index", exposure)]
   doA[,exposure := gsub("GIANT_2015_WC", "Waist circumference", exposure)]
+  doA[, exposure := gsub("whradjbmi_ukbonly", "WHRadjBMI", exposure)]
   doA[,colour := "black"]
   doB <- res_univariate[exposure %in% exp_name[[i]] & outcome %in% out_name[[i]][2]]
   
@@ -171,13 +173,14 @@ for(i in 1:length(file_name)) {
 
 #Figure 3
 harm_class <- harm_class[class != "WHRonly-"] #there is no value at doing the analysis on WHRonly-
-res_class <- separate(res_class, col = "exposure", into = c("class", "exposure"), sep = "_", remove =  TRUE) %>% as.data.table(.)
-harm_class[,exposure := exposure %>% gsub(".*_", "", .) ]
+harm_class[,class := NULL]
+res_class <- separate(res_class, col = "exposure", into = c("class", "exposure"), extra = "merge", sep = "_", remove =  TRUE) %>% as.data.table(.)
+harm_class <- separate(harm_class, col = "exposure", into = c("class", "exposure"), extra = "merge", sep = "_", remove =  TRUE) %>% as.data.table(.)
 res_class[, id.exposure := exposure]
 harm_class[, id.exposure := exposure]
 
-mr_results <-  res_class[exposure == "ukb-b-19953" & outcome %in% c("NAFLD", "Fat_Liver"),]
-dat <- harm_class[exposure == "ukb-b-19953" & outcome %in% c("NAFLD", "Fat_Liver"),]
+mr_results <-  res_class[exposure == "BMI_UKB" & outcome %in% c("NAFLD", "Fat_Liver"),]
+dat <- harm_class[exposure == "BMI_UKB" & outcome %in% c("NAFLD", "Fat_Liver"),]
 
 mr_results[,align := class]
 dat[,align := class]
@@ -189,8 +192,8 @@ mr_results[, align := factor(align, levels = levels(dat$align))]
 mr_results[, outcome := factor(outcome, levels = levels(dat$outcome))]
 mr_results <- mr_results[order(align,outcome),]
 
-source("/mnt/sde/gagelo01/Projects/small_MR_exploration/FI_BMI/Analysis/my_mr_scatter_plot.R")
-k <- my_mr_scatter_plot( dat = dat, mr_results = mr_results, equation_facet_grid = "outcome ~  align")
+source("/mnt/sda/gagelo01/Projects/small_MR_exploration/FI_BMI/Analysis/my_mr_scatter_plot.R")
+k <- my_mr_scatter_plot( dat = dat, mr_results = mr_results, equation_facet_grid = "outcome ~  align", legend.position = "top")
 k + xlab("SNP effect on BMI") +ylab("SNP effect on liver traits")
 
 ggsave(paste0("Results/", "Figure3_possibly", ".png"),
@@ -199,13 +202,14 @@ ggsave(paste0("Results/", "Figure3_possibly", ".png"),
 
 
 #Figure 4
-exp_name <- list(c("WC_UKB", "Fat_Liver"), c("GIANT_2015_WC", "Fat_Liver"))
+exp_name <- list(c("WC_UKB", "Fat_Liver"), c("WC_UKB", "Fat_Liver"), c("GIANT_2015_WC", "Fat_Liver"), c("GIANT_2015_WC", "Fat_Liver"))
+out_name <-  c("Mahajan_Type2diabetes", "van_der_Harst_CAD", "Mahajan_Type2diabetes", "van_der_Harst_CAD") 
 study<-c("ukb", "giant")
-file_name <- c("Figure3", "Supplementary_figure3")
+file_name <- c("Figure3", "Figure3_CAD", "Supplementary_figure3", "Supplementary_figure3_CAD")
 
 for(i in 1:length(exp_name)) {
   
-  doA<-res_univariate[outcome == "Mahajan_Type2diabetes" & exposure %in% exp_name[[i]]]
+  doA<-res_univariate[outcome == out_name[i] & exposure %in% exp_name[[i]]]
   
   
   format_toforest <- function(do, multivariate) {
@@ -218,7 +222,7 @@ for(i in 1:length(exp_name)) {
     return(MVMR)
   }
   
-  MVMRA <- format_toforest(do = doA, multivariate = resmvmr[[paste0(exp_name[[i]][1],"-and-Fat_Liver-on-Mahajan_Type2diabetes")]])
+  MVMRA <- format_toforest(do = doA, multivariate = resmvmr[[paste0(exp_name[[i]][1],"-and-Fat_Liver-on-",out_name[i])]])
   MVMRA[heading == "Multivariable", name := name %>% ifelse(. == "Liver fat", "Liver fat adjusted for Waist circumference", .) %>% ifelse(. == "Waist circumference", "Waist circumference adjusted for Liver fat", .)]
   
   resultsA <- data.frame(variable = LETTERS[1:nrow(MVMRA)],
@@ -251,7 +255,7 @@ for(i in 1:length(exp_name)) {
                    col.right.heading = c("OR (95% CI)", "P-value"),
                    col.left         = c("nsnp"),
                    col.left.heading = c("n SNPs"),
-                   xlab = c("Effect of 1-SD increase in Liver fat/waist circumference on T2D (OR)"),
+                   xlab = paste0("Effect of 1-SD increase in Liver fat/waist circumference on ",ifelse(out_name[i] == "van_der_Harst_CAD", "CAD", "T2D") ," (OR)"),
                    colour           = "colour",
                    blankrows = c(0,0,0,0))
   
@@ -260,4 +264,62 @@ for(i in 1:length(exp_name)) {
          width=798/72,height=583/72, units="in", scale=1,
          device = "png")
 }
+
+#########Figures for presentation univariable WC + liver fat ~ CAD
+
+exp_name = list(c("WC_UKB", "Fat_Liver"))
+out_name = list("van_der_Harst_CAD")
+file_name <- c("Presentationliver_WC_CAD")
+
+for(i in 1:length(exp_name)) {
+  doA <- res_univariate[exposure %in% exp_name[[i]] & outcome %in% out_name[[i]][1]]
+  # doA <- doA[!(method == "MR Egger")]
+  doA[,exposure := gsub("BMI_UKB", "Body mass index", exposure)]
+  doA[,exposure := gsub("WC_UKB", "Waist circumference", exposure)]
+  doA[,exposure := gsub("GIANT_2015_BMI", "Body mass index", exposure)]
+  doA[,exposure := gsub("GIANT_2015_WC", "Waist circumference", exposure)]
+  doA[,exposure := gsub("Fat_Liver", "Liver Fat", exposure)]
+  doA[,colour := "black"]
+  
+  resultsA <- data.frame(variable = as.character(1:nrow(doA)),
+                         estimate = round(doA$b, digits =2),
+                         lci =  round(doA$lci, digits = 2),
+                         uci =  round(doA$uci, digits = 2),
+                         n = doA$nsnp,
+                         P_value = formatC(doA$pval, format = "e", digits = 1),
+                         colour = doA$colour )
+  
+  
+  mylabels <- data.frame(heading1 = doA$exposure,
+                         heading2 = doA$method,
+                         heading3 = as.character(NA),
+                         variable = as.character(1:nrow(doA)))
+  
+  
+  k <- make_forest_plot(panels = list(resultsA),
+                        col.key = "variable",
+                        row.labels = mylabels,
+                        exponentiate = FALSE,
+                        pointsize = 2, 
+                        rows = unique(mylabels$heading1),
+                        col.stderr = NULL,
+                        col.lci = "lci",
+                        col.uci = "uci",
+                        col.left         = c("n"),
+                        col.left.heading = c("n SNPs"),
+                        col.right = "P_value",
+                        col.right.heading = c("Effect (95% CI)", "P-value"),
+                        xlab = c("Effect on CAD log(OR)"),
+                        blankrows = c(0,0,0,0),
+                        col.right.hjust = 1,
+                        nullval = 0,
+                        colour           = "colour",
+                        panel.headings = NULL)
+  k  
+  ggsave(paste0("Results/", file_name[i], ".png"),
+         width=936/72,height=529/72, units="in", scale=1,
+         device = "png")
+}
+
+message("This script finished without errors")
 
