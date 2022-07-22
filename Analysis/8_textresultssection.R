@@ -1,4 +1,3 @@
-##########Results Section ################
 #!/usr/bin/env Rscript
 library(TwoSampleMR)
 library(tidyverse)
@@ -12,7 +11,7 @@ library(MendelianRandomization)
 # for(i in 1:length(objects)) {
 #   assign(objects[i] , fread(paste0("Results/", objects[i], ".txt"))) 
 # }
-setwd("/mnt/sde/gagelo01/Projects/small_MR_exploration/replication_will_clean")
+setwd("/mnt/sda/gagelo01/Projects/small_MR_exploration/replication_will_clean")
 resmvmr <- readRDS( "Data/Modified/res_mvmr.rds")
 res_univariate <- fread("Data/Modified/res_univariate.txt")
 FandQ <- fread( "Data/Modified/FandQ_univariate.txt")
@@ -38,9 +37,10 @@ res_univariate[exposure == "BMI_UKB" & outcome == "NAFLD" & method == "Inverse v
 FandQ[exposure == "BMI_UKB" & outcome == "NAFLD" & method == "Inverse variance weighted", ]
 return_format_data(res_univariate[exposure == "BMI_UKB" & outcome == "NAFLD" & method == "Inverse variance weighted",])
 
-res_univariate[exposure == "WHRadjBMI" & outcome == "NAFLD" & method == "Inverse variance weighted",nsnp]
-FandQ[exposure == "WHRadjBMI" & outcome == "NAFLD" & method == "Inverse variance weighted", ]
-return_format_data(res_univariate[exposure == "WHRadjBMI" & outcome == "NAFLD" & method == "Inverse variance weighted",])
+#para 2
+res_univariate[exposure == "whradjbmi_ukbonly" & outcome == "NAFLD" & method == "Inverse variance weighted",nsnp]
+FandQ[exposure == "whradjbmi_ukbonly" & outcome == "NAFLD" & method == "Inverse variance weighted", ]
+return_format_data(res_univariate[exposure == "whradjbmi_ukbonly" & outcome == "NAFLD" & method == "Inverse variance weighted",])
 
 
 #std of BMI is 4.77168 in BMI points; std of wc is 13.4238 in cm
@@ -57,11 +57,11 @@ return_format_data(resmvmr$`WC_UKB-and-BMI_UKB-on-NAFLD`[method == "Multivariabl
 resmvmr$`WC_UKB-and-BMI_UKB-on-NAFLD`[clump_exposure == "none",.(exposure, F_stastistics)]
 
 #para 3
-res_class[exposure == "BMI+WHR+_ukb-b-19953" & outcome == "NAFLD" & method == "Inverse variance weighted", ] %>% 
+res_class[exposure == "BMI+WHR+_BMI_UKB" & outcome == "NAFLD" & method == "Inverse variance weighted", ] %>% 
   return_format_data()
-res_class[exposure == "BMI+WHR-_ukb-b-19953" & outcome == "NAFLD" & method == "Inverse variance weighted", ] %>% 
+res_class[exposure == "BMI+WHR-_BMI_UKB" & outcome == "NAFLD" & method == "Inverse variance weighted", ] %>% 
   return_format_data()
-res_class[exposure == "BMIonly+_ukb-b-19953" & outcome == "NAFLD" & method == "Inverse variance weighted", ] %>% 
+res_class[exposure == "BMIonly+_BMI_UKB" & outcome == "NAFLD" & method == "Inverse variance weighted", ] %>% 
   return_format_data()
 
 
@@ -83,19 +83,14 @@ return_format_data(res_univariate[method == "Inverse variance weighted" & exposu
 return_format_data(resmvmr$`WC_UKB-and-Fat_Liver-on-Mahajan_Type2diabetes`[method == "Multivariable IVW" & exposure == "WC_UKB" & clump_exposure == "Fat_Liver",])
 return_format_data(resmvmr$`WC_UKB-and-Fat_Liver-on-Mahajan_Type2diabetes`[method == "Multivariable IVW" & exposure == "Fat_Liver" & clump_exposure == "Fat_Liver",])
 
-return_format_data(resmvmr$`GIANT_2015_WC-and-Fat_Liver-on-Mahajan_Type2diabetes`[method == "Multivariable IVW" & exposure == "GIANT_2015_WC" & clump_exposure == "Fat_Liver",])
-return_format_data(resmvmr$`GIANT_2015_WC-and-Fat_Liver-on-Mahajan_Type2diabetes`[method == "Multivariable IVW" & exposure == "Fat_Liver" & clump_exposure == "Fat_Liver",])
-
-
-
-res_univariate[exposure == "WC_UKB" & outcome == "van_der_Harst_CAD" & method == "Inverse variance weighted",nsnp]
-FandQ[exposure == "WC_UKB" & outcome == "van_der_Harst_CAD" & method == "Inverse variance weighted", ]
-return_format_data(res_univariate[method == "Inverse variance weighted" & exposure == "WC_UKB" & outcome == "van_der_Harst_CAD",])
-res_univariate[exposure == "WC_UKB" & outcome == "van_der_Harst_CAD" & method == "Inverse variance weighted",nsnp]
-FandQ[exposure == "NALFD" & outcome == "van_der_Harst_CAD" & method == "Inverse variance weighted", ]
-return_format_data(res_univariate[method == "Inverse variance weighted" & exposure == "NAFLD" & outcome == "van_der_Harst_CAD",])
-return_format_data(resmvmr$`WC_UKB-and-NAFLD-on-van_der_Harst_CAD`[method == "Multivariable IVM" & exposure == "WC_UKB" & clump_exposure == "NAFLD",])
-return_format_data(resmvmr$`WC_UKB-and-NAFLD-on-van_der_Harst_CAD`[method == "Multivariable IVM" & exposure == "NAFLD" & clump_exposure == "NAFLD",])
+# res_univariate[exposure == "WC_UKB" & outcome == "van_der_Harst_CAD" & method == "Inverse variance weighted",nsnp]
+# FandQ[exposure == "WC_UKB" & outcome == "van_der_Harst_CAD" & method == "Inverse variance weighted", ]
+# return_format_data(res_univariate[method == "Inverse variance weighted" & exposure == "WC_UKB" & outcome == "van_der_Harst_CAD",])
+# res_univariate[exposure == "WC_UKB" & outcome == "van_der_Harst_CAD" & method == "Inverse variance weighted",nsnp]
+# FandQ[exposure == "NALFD" & outcome == "van_der_Harst_CAD" & method == "Inverse variance weighted", ]
+# return_format_data(res_univariate[method == "Inverse variance weighted" & exposure == "NAFLD" & outcome == "van_der_Harst_CAD",])
+# return_format_data(resmvmr$`WC_UKB-and-NAFLD-on-van_der_Harst_CAD`[method == "Multivariable IVM" & exposure == "WC_UKB" & clump_exposure == "NAFLD",])
+# return_format_data(resmvmr$`WC_UKB-and-NAFLD-on-van_der_Harst_CAD`[method == "Multivariable IVM" & exposure == "NAFLD" & clump_exposure == "NAFLD",])
 
 #mediation
 thetad <- resmvmr$`WC_UKB-and-Fat_Liver-on-Mahajan_Type2diabetes`[method == "Multivariable IVW" & exposure == "WC_UKB" & clump_exposure == "Fat_Liver",]$b
@@ -120,3 +115,5 @@ for (i in 1:length(to_exclude)) {
 
   }
 list
+
+message("This script finished without errors")
