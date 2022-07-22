@@ -7,7 +7,7 @@ library(MendelianRandomization)
 library(writexl)
 library(furrr)
 
-setwd("/mnt/sde/gagelo01/Projects/small_MR_exploration/replication_will_clean")
+setwd("/mnt/sda/gagelo01/Projects/small_MR_exploration/replication_will_clean")
 # all_inst_proxies <- fread( "Data/Modified/all_inst_proxies.txt")
 all_inst_mvmr <- fread( "Data/Modified/all_inst_mvmr")
 all_inst_mvmr[, id.exposure := exposure]
