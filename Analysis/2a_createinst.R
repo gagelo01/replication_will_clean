@@ -4,21 +4,21 @@ library(GagnonMR)
 library(tidyverse)
 library(furrr)
 
-setwd("/mnt/sde/gagelo01/Projects/small_MR_exploration/replication_will_clean")
+setwd("/mnt/sda/gagelo01/Projects/small_MR_exploration/replication_will_clean")
 gwasvcf::set_bcftools()
 gwasvcf::set_plink()
 ldref <-"/home/couchr02/Mendel_Commun/Christian/LDlocal/EUR_rs"
 
-ao <- fread("/mnt/sdf/gagelo01/Vcffile/available_outcomes_2021-10-13.txt")
-ao[id %in% list.files("/mnt/sdf/gagelo01/Vcffile/MRBase_vcf/")]
-df_index <- fread("/mnt/sdf/gagelo01/Vcffile/server_gwas_id.txt")
+ao <- fread("/mnt/sda/gagelo01/Vcffile/available_outcomes_2021-10-13.txt")
+ao[id %in% list.files("/mnt/sda/gagelo01/Vcffile/MRBase_vcf/")]
+df_index <- fread("/mnt/sda/gagelo01/Vcffile/server_gwas_id.txt")
 df_index[category %in% c("Trait", "Disease"), ][group_name != "Dietary habits",][trait != "Chronotype_Morningness", ]
 
 
 ID_mrbase_exp <- c("ieu-a-61", "ieu-a-835", "ukb-b-19953", "ukb-b-9405","ieu-a-7", "ieu-a-79" ) 
-exp_mrbase <- paste0("/mnt/sdf/gagelo01/Vcffile/MRBase_vcf/", ID_mrbase_exp, "/", ID_mrbase_exp, ".vcf.gz")
-ID_server_exp <- c("dis-2-1", "dis-9-1", "dis-8-1", "dis-6-1", "trait-14-6", "trait-14-7", "trait-14-8")
-exp_server <- paste0("/mnt/sdf/gagelo01/Vcffile/Server_vcf/", ID_server_exp, "/", ID_server_exp, ".vcf.gz")
+exp_mrbase <- paste0("/mnt/sda/gagelo01/Vcffile/MRBase_vcf/", ID_mrbase_exp, "/", ID_mrbase_exp, ".vcf.gz")
+ID_server_exp <- c("dis-2-1", "dis-9-1", "dis-8-1", "dis-6-1", "trait-14-6", "trait-14-7", "trait-14-8", "trait-10-2")
+exp_server <- paste0("/mnt/sda/gagelo01/Vcffile/Server_vcf/", ID_server_exp, "/", ID_server_exp, ".vcf.gz")
 
 
 options(future.globals.maxSize= 5e9)
