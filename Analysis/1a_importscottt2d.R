@@ -3,14 +3,14 @@ library(data.table)
 library(GagnonMR)
 library(tidyverse)
 
-setwd("/mnt/sde/gagelo01/Projects/small_MR_exploration/replication_will_clean")
+setwd("/mnt/sda/gagelo01/Projects/small_MR_exploration/replication_will_clean")
 
-t2d <- fread("/mnt/sde/gagelo01/Projects/small_MR_exploration/replication_will_clean/Data/Raw/METAANALYSIS_DIAGRAM_SE1.txt")
+t2d <- fread("/mnt/sda/gagelo01/Projects/small_MR_exploration/replication_will_clean/Data/Raw/METAANALYSIS_DIAGRAM_SE1.txt")
 t2d <- separate(t2d, "Chr:Position", sep = ":", into = c("Chr", "Position"))
 t2d[, Chr := as.integer(Chr)]
 t2d[, Position := as.integer(Position)]
 
-traduction = fread("/mnt/sde/couchr02/1000G_Phase3/1000G_Phase3_b37_rsid_maf.txt")
+traduction = fread("/mnt/sda/couchr02/1000G_Phase3/1000G_Phase3_b37_rsid_maf.txt")
 traduction[, EUR := EUR %>% ifelse(.==0,0.001,. ) %>% ifelse(.==1, 0.999, .)]
 traduction[, maf := NULL]
 
@@ -31,8 +31,8 @@ GagnonMR::formattovcf_createindex(all_out = t2d,
                                   pos_col = "Position",
                                   units = "log odds",
                                   traduction = traduction,
-                                  out_wd = "/mnt/sdf/gagelo01/Vcffile/Server_vcf",
-                                  df_index = fread("/mnt/sdf/gagelo01/Vcffile/server_gwas_id.txt"),
+                                  out_wd = "/mnt/sda/gagelo01/Vcffile/Server_vcf",
+                                  df_index = fread("/mnt/sda/gagelo01/Vcffile/server_gwas_id.txt"),
                                   group_name = "public",
                                   year = 2017,
                                   author = "Scott RA",

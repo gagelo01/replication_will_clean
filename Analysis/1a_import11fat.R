@@ -5,11 +5,11 @@ library(GagnonMR)
 library(tidyverse)
 library(furrr)
 
-setwd("/mnt/sde/gagelo01/Projects/small_MR_exploration/replication_will_clean")
+setwd("/mnt/sda/gagelo01/Projects/small_MR_exploration/replication_will_clean")
 
 code <- fread("/home/couchr02/Mendel_Commun/Christian/GWAS/IRM_Liu/GCST_code.tsv")
 code[,trait_organ := paste0(trait, "_", organ)]
-traduction = fread("/mnt/sde/couchr02/1000G_Phase3/1000G_Phase3_b37_rsid_maf.txt")
+traduction = fread("/mnt/sda/couchr02/1000G_Phase3/1000G_Phase3_b37_rsid_maf.txt")
 traduction[, EUR := EUR %>% ifelse(.==0,0.001,. ) %>% ifelse(.==1, 0.999, .)]
 traduction[, maf := NULL]
 
@@ -19,7 +19,7 @@ newrow <- data.table(id = paste0("trait-14-", 1:nrow(code)), trait = code[,trait
                      category = "Trait", pmid = 34128465, ncase = NA,
                      sd = 1, note = NA, ncontrol = NA)
 
-df_index <- fread("/mnt/sdf/gagelo01/Vcffile/server_gwas_id.txt")
+df_index <- fread("/mnt/sda/gagelo01/Vcffile/server_gwas_id.txt")
 df_index <- rbind(df_index, newrow)
 
 code <- merge( code,newrow[,.(trait, id)],  by.x = "trait_organ", by.y = "trait")
@@ -48,7 +48,7 @@ GagnonMR::formattovcf_createindex(all_out = data,
                                   pos_col = "base_pair_location",
                                   units = "SD",
                                   traduction = traduction,
-                                  out_wd = "/mnt/sdf/gagelo01/Vcffile/Server_vcf",
+                                  out_wd = "/mnt/sda/gagelo01/Vcffile/Server_vcf",
                                   df_index = df_index,
                                   group_name = "public",
                                   year = 2021,
@@ -73,7 +73,7 @@ df_index[pmid == 34128465 & trait == "Volume_Pancreas", sample_size := 31758]
 df_index[pmid == 34128465 & trait %in% c("Fat_Pancreas", "Iron_Pancreas"), sample_size := 25617]
 df_index[pmid == 34128465 & trait %in% c("Fat_Liver", "Iron_Liver"), sample_size := 32858]
 
-fwrite(df_index, "/mnt/sdf/gagelo01/Vcffile/server_gwas_id.txt")
+fwrite(df_index, "/mnt/sda/gagelo01/Vcffile/server_gwas_id.txt")
 
 message("This script finished without error")
 
