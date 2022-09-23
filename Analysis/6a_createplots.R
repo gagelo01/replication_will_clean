@@ -15,7 +15,7 @@ harm_class <- fread("Data/Modified/harm_class.txt")
 ###plotting Figure 1 and supplementary figure 1
 exp_name = list(c("BMI_UKB", "WC_UKB", "whradjbmi_ukbonly"), c("GIANT_2015_BMI", "GIANT_2015_WC","WHRadjBMI"))
 out_name = list(c("NAFLD","Fat_Liver"), c("NAFLD", "Fat_Liver"))
-file_name <- c("Figure1", "Supplementary_figure1")
+file_name <- c("Figure1", "SupplementaryFigure1")
 
 for(i in 1:length(exp_name)) {
   doA <- res_univariate[exposure %in% exp_name[[i]] & outcome %in% out_name[[i]][1]]
@@ -71,12 +71,12 @@ for(i in 1:length(exp_name)) {
                         panel.headings = NULL)
   k  
   ggsave(paste0("Results/", file_name[i], ".png"),
-         width=936/72,height=529/72, units="in", scale=1,
+         width=936/72,height=529/72, units="in", scale=1,  dpi = 1000,
          device = "png")
 }
 #Figure 2 clean
 mvmr_object <- list(c("WC_UKB-and-BMI_UKB-on-NAFLD", "WC_UKB-and-BMI_UKB-on-Fat_Liver"), c("GIANT_2015_WC-and-GIANT_2015_BMI-on-NAFLD", "GIANT_2015_WC-and-GIANT_2015_BMI-on-Fat_Liver"))
-file_name <- c("Figure2", "Supplementary_figure2")
+file_name <- c("Figure2", "SupplementaryFigure2")
 for(i in 1:length(file_name)) {
   mvmr_results <- lapply(as.list(mvmr_object[[i]]), function(x) resmvmr[[x]]) %>% rbindlist(.)
   
@@ -121,7 +121,7 @@ for(i in 1:length(file_name)) {
   # ) + facet_grid( ~ outcome ) 
   
   ggsave(paste0("Results/", file_name[i],"colour", ".png"),
-         width=483/72,height=250/72, units="in", scale=1,
+         width=483/72,height=250/72, units="in", scale=1, dpi = 1000,
          device = "png")
   #### figure 2
   
@@ -166,8 +166,8 @@ for(i in 1:length(file_name)) {
                              nullval = 0,
                              scalepoints = FALSE)
   
-  ggsave(paste0("Results/", file_name[i],"Clean", ".png"),
-         width=840/72,height=346/72, units="in", scale=1,
+  ggsave(paste0("Results/", file_name[i],"", ".png"),
+         width=840/72,height=346/72, units="in", scale=1,  dpi = 1000,
          device = "png")
 }
 
@@ -196,8 +196,8 @@ source("/mnt/sda/gagelo01/Projects/small_MR_exploration/FI_BMI/Analysis/my_mr_sc
 k <- my_mr_scatter_plot( dat = dat, mr_results = mr_results, equation_facet_grid = "outcome ~  align", legend.position = "top")
 k + xlab("SNP effect on BMI") +ylab("SNP effect on liver traits")
 
-ggsave(paste0("Results/", "Figure3_possibly", ".png"),
-       width=530/72,height=418/72, units="in", scale=1,
+ggsave(paste0("Results/", "Figure3", ".png"),
+       width=530/72,height=418/72, units="in", scale=1, dpi = 1000,
        device = "png")
 
 
@@ -205,7 +205,7 @@ ggsave(paste0("Results/", "Figure3_possibly", ".png"),
 exp_name <- list(c("WC_UKB", "Fat_Liver"), c("WC_UKB", "Fat_Liver"), c("GIANT_2015_WC", "Fat_Liver"), c("GIANT_2015_WC", "Fat_Liver"))
 out_name <-  c("Mahajan_Type2diabetes", "van_der_Harst_CAD", "Mahajan_Type2diabetes", "van_der_Harst_CAD") 
 study<-c("ukb", "giant")
-file_name <- c("Figure3", "Figure3_CAD", "Supplementary_figure3", "Supplementary_figure3_CAD")
+file_name <- c("Figure4", "Figure4_CAD", "SupplementaryFigure3", "SupplementaryFigure3_CAD")
 
 for(i in 1:length(exp_name)) {
   
@@ -260,8 +260,8 @@ for(i in 1:length(exp_name)) {
                    blankrows = c(0,0,0,0))
   
   
-  ggsave(paste0("Results/", file_name[i], "Complete.png"),
-         width=798/72,height=583/72, units="in", scale=1,
+  ggsave(paste0("Results/", file_name[i], ".png"),
+         width=798/72,height=583/72, units="in", scale=1, dpi = 1000,
          device = "png")
 }
 
@@ -317,7 +317,7 @@ for(i in 1:length(exp_name)) {
                         panel.headings = NULL)
   k  
   ggsave(paste0("Results/", file_name[i], ".png"),
-         width=936/72,height=529/72, units="in", scale=1,
+         width=936/72,height=529/72, units="in", scale=1, dpi = 1000,
          device = "png")
 }
 
