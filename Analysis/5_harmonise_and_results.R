@@ -15,44 +15,7 @@ all_outcome_mvmr <- fread( "Data/Modified/all_outcome_mvm.txt" )
 all_outcome_mvmr [, id.outcome := outcome]
 inst_all_sign_clump <- fread( "Data/Modified/inst_all_sign_clump.txt")
 inst_all_sign_clump[, id.exposure := exposure]
-
-#####Liu
-# liu <- c("rs738409", "rs58542926")
-# LDlinkR::LDproxy_batch(snp = liu, token = Sys.getenv("LDLINK_TOKEN"), 
-#                        append = TRUE)
-# liu_LD <- fread("combined_query_snp_list.txt")
-# rs_prox <- liu_LD[RS_Number %in% inst_all_sign_clump[exposure == "NAFLD",]$SNP, ]$RS_Number
-# inst_NAFLD <- inst_all_sign_clump[exposure == "NAFLD",][pval.exposure < 5e-8,]
-# index_to_remove <- inst_all_sign_clump[exposure == "NAFLD"]$SNP[!(inst_all_sign_clump[exposure == "NAFLD"]$SNP %in% inst_NAFLD[pval.exposure < 5e-8,]$SNP)]
-# inst_all_sign_clump <- inst_all_sign_clump[!(SNP %in% index_to_remove)]
-
-###ivw-mr on everything
-# exposure_name_df <- data.frame(exposure_name = inst_all_sign_clump$exposure %>% unique)
-# outcome_name_df <- data.frame(outcome_name = all_outcome_mvmr$outcome %>% unique)
-# arguments_df <- tidyr::crossing(exposure_name_df, outcome_name_df)
-# harm_wrapper<-function(exposure_name, outcome_name) {
-#   dat <- harmonise_data(inst_all_sign_clump[exposure == exposure_name], all_outcome_mvmr[outcome == outcome_name], action = 2)
-# return(dat)
-# }
-# list_harm <- pmap(arguments_df, harm_wrapper)
-# steiger_filtering_safely <- safely(steiger_filtering)
-# list_harm_s <- lapply(list_harm, function(x) steiger_filtering_safely)
-# index <- sapply(list_harm_s, function(x) is.null(x$error))
-# list_harm[!index]
-# harm_ivw <- rbindlist(list_harm, fill = TRUE)
-# 
-# 
-# res_ivw <- mr(dat = harm_ivw, method_list = "mr_ivw")
-# setDT(res_ivw)
-# res_ivw <- res_ivw[outcome != exposure]
-# res_ivw[exposure == "NAFLD",][pval < 0.05]$outcome
-# res_ivw[exposure == "Mahajan_Type2diabetes",][pval < 0.05]$outcome
-# res_ivw[exposure == "scott_t2d",][pval < 0.05]$outcome
-###univariate
-
-# inst_all_sign_clump <- inst_all_sign_clump[exposure %in% c("BMI_UKB", "WC_UKB", "NAFLD", "Mahajan_Type2diabetes",  "GIANT_2015_WC",  "GIANT_2015_BMI") ]
-# all_outcome_mvmr <- all_outcome_mvmr[outcome %in% c("Mahajan_Type2diabetes", "BMI_UKB", "WC_UKB", "NAFLD", "van_der_Harst_CAD", "GIANT_2015_WC",  "GIANT_2015_BMI"), ]
-
+#
 inst_all_sign_clump_split <- split(inst_all_sign_clump, inst_all_sign_clump$exposure)
 harm_univariate <- lapply(inst_all_sign_clump_split, function(x) {harmonise_data(x, all_outcome_mvmr, action = 1)}) %>% rbindlist(.,fill = TRUE)
 

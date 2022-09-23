@@ -34,6 +34,7 @@ out <- future_map(as.list(c(exp_mrbase,exp_server)), function(x) {
   return(outr)
 }, .options = furrr_options(seed = TRUE)) %>% rbindlist(.,fill = TRUE)
 
+out[outcome %in% "ieu-a-7", outcome := "Nikpay_CAD"]
 harm <- TwoSampleMR::harmonise_data(inst, out, action = 1)
 setDT(harm)
 harm[,exposure_outcome := paste0(exposure, "_", outcome)]
