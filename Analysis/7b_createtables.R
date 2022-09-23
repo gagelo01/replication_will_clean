@@ -71,13 +71,13 @@ egger_intercept5e6[, trait := NULL]
 dt_title <- data.table(title = paste0("Supplementary Table ", 1:9),
                        caption = c("Description of the datasets used.",
                                    "Harmonised data sets.",
+                                   "Instrument strength and heterogeneity statistics for univariable MR",
                                    "Univariable Mendelian Randomization results",
                                    "Univariable Mendelian Randomization Egger's intercept",
                                    "Multivariable Mendelian randomization results.",
                                    "Group specific Mendelian randomization results",
                                    "NAFLD effect on T2D and CAD using pvalue threshold of 5e-6 and LD clump of R2<0.001",
-                                   "NAFLD egger intercept on T2D and CAD using pvalue threshold of 5e-6 and LD clump of R2<0.001",
-                                   "Instrument strength and heterogeneity statistics for univariable MR"),
+                                   "NAFLD egger intercept on T2D and CAD using pvalue threshold of 5e-6 and LD clump of R2<0.001"),
                        column_legend = c("trait = UNique trait identifier; group_name = the name of the study group;  year = year data was published
 ; author = author of the data; consortium = conortium for the sample;  
 sex = sex of the sample (in this study always Males and Females); 
@@ -96,6 +96,9 @@ exposure = Unique name for exposure;  chr.exposure = SNP Chromosome; pos.exposur
 se.exposure = standard error of the SNP exposure association; pval.exposure = p-value of the SNP exposure association;        
 samplesize.exposure = Maximum sample size of the exposure GWAS; ncase.exposure = maximum nmber of case of the exposure GWAS;       
 ncontrol.exposure = Maximum nmber of controls of the exposure GWAS; mr_keep.exposure = Should you remove this genetic instruments because the allele frequency does not match;",
+                                         "outcome = Unique name for the outcome; exposure = Unique name for the exposure; method = the method to compute the cochran's Q test;
+Q = cochran's Q value; Q_df = The cochran's Q statistics number of degree of freedom; Q_pval = The Cochran's Q  p-value;
+fstat = the F-statistics of the instrumental variables; rsq = the variance explained of the exposure by the instrumental variables."),                                         
                                          "outcome = unique name of the outcome; exposure = unique name of the exposure; method = name of the method to estimate the causal effect of the exposure on the outcome;",
 "nsnp = The number of SNPs genetic instruments used to compute the estimate; b = the estimate scaled per SD or log(orr); 
 se =  standard error of the estimate; pval = the p-value of the estimate; lci = the 95% confidence intervall lower bound of the effect;
@@ -109,23 +112,24 @@ cochranQ = The cochran's Q statitics; cochranQpval =The cochran's Q statitics  p
 method = The name of the multivarialble MR method used;   F_stastistics = The conditionnal F-statistics; 
 clump_exposure = The clumping was based on the highest pvalue of which exposure. None = both exposures;         
 exposure_outcome_analyzed = The name of the exposures and the outcomes analysed in the form paste0(exposure1,'-and-',exposure2,'-on-',outcome)",
-"Same as Supplementary Table 3",
 "Same as Supplementary Table 4",
-"outcome = Unique name for the outcome; exposure = Unique name for the exposure; method = the method to compute the cochran's Q test;
-Q = cochran's Q value; Q_df = The cochran's Q statistics number of degree of freedom; Q_pval = The Cochran's Q  p-value;
-fstat = the F-statistics of the instrumental variables; rsq = the variance explained of the exposure by the instrumental variables."))
+"Same as Supplementary Table 5")
 
-
-writexl::write_xlsx(x = list("Tables captions and titles" = dt_title,
-                            "Supplementary Table 1" = dataset,
-                            "Supplementary Table 2" = harm_univariate,
-                            "Supplementary Table 3" = res_univariate, 
-                            "Supplementary Table 4" = egger_intercept, 
-                            "Supplementary Table 5" = dt_resmvmr, 
-                            "Supplementary Table 6" = res_class,
-                            "Supplementary Table 7" = NAFLDsensi,
-                            "Supplementary Table 8" = egger_intercept5e6,
-                            "Supplementary Table 9" = FandQ),
+list_supdat <- list("Tables captions and titles" = dt_title,
+     "Supplementary Data 1" = dataset,
+     "Supplementary Data 2" = harm_univariate,
+     "Supplementary Data 3" = FandQ,
+     "Supplementary Data 4" = res_univariate, 
+     "Supplementary Data 5" = egger_intercept, 
+     "Supplementary Data 6" = dt_resmvmr, 
+     "Supplementary Data 7" = res_class,
+     "Supplementary Data 8" = NAFLDsensi,
+     "Supplementary Data 9" = egger_intercept5e6)
+for(i in 1:length(list_supdat)) {
+  writexl::write_xlsx(x = list_supdat[[i]],
+                      path = paste0("Results/", gsub(" ", "_", names(list_supdat)[[i]]), ".xlsx"))
+}
+writexl::write_xlsx(x = list_supdat,
                     path = "Results/supplementary_tables_clean.xlsx")
 
 
